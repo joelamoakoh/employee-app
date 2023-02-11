@@ -8,6 +8,7 @@ import controllers.EmployeeAPI
 import models.employee
 import mu.KotlinLogging
 import kotlin.math.round
+import java.time.LocalDate
 
 
 var employees = EmployeeAPI()
@@ -32,7 +33,7 @@ fun main (args: Array<String>){
                 4 -> paySlip()
                 5 -> update()
                 6 -> delete()
-
+                7 -> attendance()
                 -99 -> dummyData()
                 -1 -> println("Exiting App")
                 else -> println("Invalid Option")
@@ -51,6 +52,7 @@ fun main (args: Array<String>){
          |   4. Print Payslip for Employee
          |   5. Update Employee
          |   6. Delete Employee
+         |   7. Clock In
          |  -1. Exit
          |       
          |Enter Option : """.trimMargin()
@@ -150,5 +152,9 @@ fun delete(){
             println("No employee found")
         }
     }
+fun attendance(){
+    println("You have clocked in :" + LocalDate.now())
+}
+
 
 
