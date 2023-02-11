@@ -4,13 +4,19 @@
  */
 package ie.setu
 
+import mu.KotlinLogging
 import kotlin.math.round
 
 var Employee =  employee("Joe", "Soap", 'm', 6143, 67543.21, 38.5, 5.2, 1450.50, 54.33)
 var employees = EmployeeAPI()
-
+val logger = KotlinLogging.logger {}
 fun main (args: Array<String>){
+    logger.info { "Launching Employee App" }
+    logger.info { "\tAssignment 1 2023!"}
+    logger.info { "\t Made by Joel Amoakoh"}
+    logger.info {" \t 20096482"}
     start()
+
 }
     fun start() {
         var input: Int

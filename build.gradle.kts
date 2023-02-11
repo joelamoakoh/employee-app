@@ -1,3 +1,4 @@
+
 plugins {
     kotlin("jvm") version "1.8.0"
     application
@@ -11,6 +12,9 @@ repositories {
 }
 
 dependencies {
+
+    implementation ("org.slf4j:slf4j-simple:1.7.36")
+    implementation ("io.github.microutils:kotlin-logging:2.1.23")
     testImplementation(kotlin("test"))
 }
 
