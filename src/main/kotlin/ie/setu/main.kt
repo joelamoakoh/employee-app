@@ -9,7 +9,7 @@ import models.employee
 import mu.KotlinLogging
 import kotlin.math.round
 
-var Employee =  employee("Joe", "Soap", 'm', 6143, 67543.21, 38.5, 5.2, 1450.50, 54.33)
+
 var employees = EmployeeAPI()
 val logger = KotlinLogging.logger {}
 fun main (args: Array<String>){
@@ -30,6 +30,9 @@ fun main (args: Array<String>){
                 2 -> list()
                 3 -> search()
                 4 -> paySlip()
+                5 -> update()
+                6 -> delete()
+
                 -99 -> dummyData()
                 -1 -> println("Exiting App")
                 else -> println("Invalid Option")
@@ -46,6 +49,8 @@ fun main (args: Array<String>){
          |   2. List All Employees
          |   3. Search Employees 
          |   4. Print Payslip for Employee
+         |   5. Update Employee
+         |   6. Delete Employee
          |  -1. Exit
          |       
          |Enter Option : """.trimMargin()
@@ -111,4 +116,39 @@ internal fun getEmployeeById(): employee? {
         employees.create(employee("Joan", "Murphy", 'f', 0, 54255.13, 32.5, 7.0, 1500.0, 55.3))
         employees.create(employee("Mary", "Quinn", 'f', 0, 75685.41, 40.0, 8.5, 4500.0, 0.0))
     }
+fun update() {
+    val employeeToUpdate = getEmployeeById()
+    if (employeeToUpdate != null) {
+        print("Enter new first name: ")
+        val newFirstName = readLine().toString()
+        print("Enter new surname: ")
+        val newSurname = readLine().toString()
+        print("Enter new gender (m/f): ")
+        val newGender = readLine()!!.toCharArray()[0]
+        print("Enter new gross salary: ")
+        val newGrossSalary = readLine()!!.toDouble()
+        print("Enter new PAYE %: ")
+        val newPayePercentage = readLine()!!.toDouble()
+        print("Enter new PRSI %: ")
+        val newPrsiPercentage = readLine()!!.toDouble()
+        print("Enter new Annual Bonus: ")
+        val newAnnualBonus = readLine()!!.toDouble()
+        print("Enter new Cycle to Work Deduction: ")
+        val newCycleToWorkMonthlyDeduction = readLine()!!.toDouble()
+
+        employees.update(employeeToUpdate.employeeID, employee(newFirstName, newSurname, newGender, 0, newGrossSalary, newPayePercentage, newPrsiPercentage, newAnnualBonus, newCycleToWorkMonthlyDeduction))
+    }
+
+
+}
+fun delete(){
+        val employee = getEmployeeById()
+        if (employee != null) {
+            employees.delete(employee.employeeID)
+            println("Employee with id ${employee.employeeID} is deleted")
+        } else {
+            println("No employee found")
+        }
+    }
+
 

@@ -29,4 +29,27 @@ class EmployeeAPI {
         employees.add(employee)
     }
 
+    fun update(id: Int, newEmployee: employee) {
+        val foundEmployee = employees.find { it.employeeID == id }
+        if (foundEmployee != null) {
+            foundEmployee.firstName = newEmployee.firstName
+            foundEmployee.surname = newEmployee.surname
+            foundEmployee.gender = newEmployee.gender
+            foundEmployee.grossSalary = newEmployee.grossSalary
+            foundEmployee.payePercentage = newEmployee.payePercentage
+            foundEmployee.prsiPercentage = newEmployee.prsiPercentage
+            foundEmployee.annualBonus = newEmployee.annualBonus
+            foundEmployee.cycleToWorkMonthlyDeduction = newEmployee.cycleToWorkMonthlyDeduction
+        }
+    }
+
+    fun delete(id: Int): employee? {
+        val foundEmployeeIndex = employees.indexOfFirst { it.employeeID == id }
+
+        if (foundEmployeeIndex == -1) {
+            return null
+        } else {
+            return employees.removeAt(foundEmployeeIndex)
+        }
+    }
 }
