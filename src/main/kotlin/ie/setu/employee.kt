@@ -38,6 +38,10 @@ class employee(var firstName: String, var surname: String, var gender: Char, var
              NET PAY: ${getNetMonthlyPay()} 
         ______________________________________________________________________"""
 
+    override fun toString(): String {
+        return "employee(firstName='$firstName', surname='$surname', gender=$gender, employeeID=$employeeID, grossSalary=$grossSalary, payePercentage=$payePercentage, prsiPercentage=$prsiPercentage, annualBonus=$annualBonus, cycleToWorkMonthlyDeduction=$cycleToWorkMonthlyDeduction)"
+    }
+
 }
 
 

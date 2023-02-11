@@ -70,11 +70,14 @@ fun add(){
 
 
 
-    fun list() {
-        println(employees.findAll())
-    }
+fun list(){
+    employees.findAll()
+        .forEach{ println(it) }
+}
 
-    internal fun getEmployeeById(): employee? {
+
+
+internal fun getEmployeeById(): employee? {
         print("Enter the employee id to search by: ")
         val employeeID = readLine()!!.toInt()
         return employees.findOne(employeeID)
