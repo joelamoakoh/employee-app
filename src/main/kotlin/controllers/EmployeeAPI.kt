@@ -2,7 +2,9 @@
  * Joel Amoakoh!
  * 20096482
  */
-package ie.setu
+package controllers
+
+import models.employee
 
 var lastId = 0
 

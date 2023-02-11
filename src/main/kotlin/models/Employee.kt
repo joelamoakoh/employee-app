@@ -2,7 +2,10 @@
  * Joel Amoakoh!
  * 20096482
  */
-package ie.setu
+package models
+
+import ie.setu.Employee
+import ie.setu.roundTwoDecimals
 
 class employee(var firstName: String, var surname: String, var gender: Char, var employeeID: Int, var grossSalary: Double, var payePercentage: Double, var prsiPercentage: Double, var annualBonus: Double, var cycleToWorkMonthlyDeduction: Double) {
 
