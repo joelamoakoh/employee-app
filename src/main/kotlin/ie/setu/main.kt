@@ -1,16 +1,12 @@
+/**
+ * Joel Amoakoh!
+ * 20096482
+ */
 package ie.setu
 
 import kotlin.math.round
 
-val firstName = "Joe"
-val surname = "Soap"
-val gender = 'm'
-val employeeID = 6143
-val grossSalary = 67543.21
-val payePercentage = 38.5
-val prsiPercentage = 5.2
-val annualBonus = 1450.50
-val cycleToWorkMonthlyDeduction = 54.33
+var Employee =  employee("Joe", "Soap", 'm', 6143, 67543.21, 38.5, 5.2, 1450.50, 54.33)
 
 fun main(args: Array<String>){
 
@@ -47,40 +43,39 @@ fun menu() : Int {
          Enter Option : """)
     return readLine()!!.toInt()
 }
-
-fun getFullName() = when (gender){
-    'm', 'M' -> "Mr. $firstName $surname"
-    'f', 'F' -> "Ms. $firstName $surname"
-    else -> "$firstName $surname"
+fun getFullName() = when (Employee.gender){
+    'm', 'M' -> "Mr. ${Employee.firstName} ${Employee.surname}"
+    'f', 'F' -> "Ms.  ${Employee.firstName} ${Employee.surname}"
+    else ->  "${Employee.firstName} ${Employee.surname}"
 }
 
-fun getMonthlySalary() = roundTwoDecimals(grossSalary / 12)
-fun getMonthlyPRSI() = roundTwoDecimals(getMonthlySalary() * (prsiPercentage / 100))
-fun getMonthlyPAYE() = roundTwoDecimals(getMonthlySalary() * (payePercentage / 100))
-fun getGrossMonthlyPay() = roundTwoDecimals(getMonthlySalary() + (annualBonus / 12))
-fun getTotalMonthlyDeductions() = roundTwoDecimals((getMonthlyPRSI() + getMonthlyPAYE() + cycleToWorkMonthlyDeduction))
+
+
+fun getMonthlySalary() = roundTwoDecimals (Employee.grossSalary / 12 )
+fun getMonthlyPRSI() = roundTwoDecimals(getMonthlySalary() * (Employee.prsiPercentage / 100))
+fun getMonthlyPAYE() = roundTwoDecimals(getMonthlySalary() * (Employee.payePercentage / 100))
+fun getGrossMonthlyPay() = roundTwoDecimals(getMonthlySalary() + (Employee.annualBonus / 12))
+fun getTotalMonthlyDeductions() = roundTwoDecimals((getMonthlyPRSI() + getMonthlyPAYE() + Employee.cycleToWorkMonthlyDeduction))
 fun getNetMonthlyPay() = roundTwoDecimals(roundTwoDecimals(getGrossMonthlyPay() - getTotalMonthlyDeductions()))
 
 fun getPayslip() =
     """
         ______________________________________________________________________
-         Monthly Payslip:             ${getFullName()}, ID: $employeeID                  
+         Monthly Payslip:             ${getFullName()}, ID: ${Employee.employeeID}              
         ______________________________________________________________________    
               PAYMENT DETAILS (gross pay: ${getGrossMonthlyPay()})                                                                    
         ______________________________________________________________________
                    Salary: ${getMonthlySalary()}
-                   Bonus:  ${roundTwoDecimals(annualBonus / 12)}            
+                   Bonus:  ${roundTwoDecimals(Employee.annualBonus / 12)}            
         ______________________________________________________________________
               DEDUCTION DETAILS (total Deductions: ${getTotalMonthlyDeductions()})      
         ______________________________________________________________________
                    PAYE: ${getMonthlyPAYE()}                
                    PRSI: ${getMonthlyPRSI()}  
-                   Cycle To Work: $cycleToWorkMonthlyDeduction         
+                   Cycle To Work: ${Employee.cycleToWorkMonthlyDeduction}        
         ______________________________________________________________________
              NET PAY: ${getNetMonthlyPay()} 
         ______________________________________________________________________"""
 
-//https://discuss.kotlinlang.org/t/how-do-you-round-a-number-to-n-decimal-places/8843
-//There are several options...try each of them out
+
 fun roundTwoDecimals(number: Double) = round(number * 100) / 100
-//fun roundTwoDecimals(number: Double) = "%.2f".format(number).toDouble()
