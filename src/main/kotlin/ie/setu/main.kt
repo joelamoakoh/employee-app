@@ -11,6 +11,8 @@ val cycleToWorkMonthlyDeduction = 54.33
 fun main(args: Array<String>){
     println("Payslip Printer")
     printPayslip()
+    println("Rounded Payslip")
+    printPayslipWithRounding()
 
 }
 
@@ -39,5 +41,32 @@ fun printPayslip(){
     println ("|    Gross:  " + grossPay + " \t\tTotal Deductions: " + totalDeductions + " |")
     println ("|_______________________________________________________________________|")
     println ("|   \t\t\t\t NET PAY:" + (grossPay - totalDeductions) + " \t\t\t\t\t\t\t|")
+    println ("|_______________________________________________________________________|")
+}
+fun printPayslipWithRounding(){
+
+    val monthlySalary = (grossSalary/12)
+    val monthlyPrsi = monthlySalary * (prsiPercentage / 100)
+    val monthlyPaye = monthlySalary * (payePercentage / 100)
+    val grossPay = (monthlySalary + (annualBonus/12))
+    val totalDeductions = (monthlyPrsi + monthlyPrsi + cycleToWorkMonthlyDeduction)
+
+    println ("_________________________________________________________________________")
+    println ("|                          Monthly Payslip                              |")
+    println ("|_______________________________________________________________________|")
+    println ("|                                                                       |")
+    println ("|   Employee Name:  " + firstName.uppercase() + " " + surname.uppercase() + "(" + gender.uppercase() + ")                    Employee ID: " + employeeID + "    |")
+    println ("|                                                                       |")
+    println ("|_______________________________________________________________________|")
+    println ("|                                                                       |")
+    println ("|    PAYMENT DETAILS \t\t\t\t DEDUCTION DETAILS  \t\t\t\t|")
+    println ("|_______________________________________________________________________|")
+    println ("|    Salary: " + "%.2f".format(monthlySalary) + "\t\t\t\t PAYE: " + "%.2f".format(monthlyPaye) + "\t\t\t\t\t\t|")
+    println ("|    Bonus:  " + "%.2f".format((annualBonus / 12)) + "\t\t\t\t\t PRSI: " + "%.2f".format(monthlyPrsi)  + "\t\t\t\t\t\t|")
+    println ("|    \t\t\t\t\t\t\t\t Cycle To Work: " + cycleToWorkMonthlyDeduction  + "\t\t\t\t|")
+    println ("|_______________________________________________________________________|")
+    println ("|    Gross:  " + "%.2f".format(grossPay) + " \t\t\t\tTotal Deductions: " + "%.2f".format(totalDeductions) + " \t\t\t|")
+    println ("|_______________________________________________________________________|")
+    println ("|   \t\t\t\t\t\t NET PAY:" + "%.2f".format((grossPay - totalDeductions)) + " \t\t\t\t\t\t\t|")
     println ("|_______________________________________________________________________|")
 }
